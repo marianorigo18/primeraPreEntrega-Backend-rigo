@@ -2,43 +2,50 @@ class ProductManager{
     constructor(){
         this.products = [];
     }
-    addProducts(title, description, price, thumbnail, stock){
+    addProducts(title, description, price, thumbnail, stock, code){
 
-        if(title == null || description == null || price == null || thumbnail == null || stock == null){
-        return console.log("no se permiten campos vacios");
+        if( title == null ||
+            description == null ||
+            price == null ||
+            thumbnail == null ||
+            stock == null ||
+            code == null){
+            console.log("Debe completar todos los campos por favor");
+            return;
+        }
+        const exist = this.products.find((prod)=> prod.code == code)
+        if(exist) {
+          console.log(`Ya existe un producto con el codigo "${code}"`);
+          return;
         }
 
-        const product = {
-            title, description, price, thumbnail, stock
-        }
+        const product = {title, description, price, thumbnail, stock, code}
+        
         if(this.products.length === 0){
-            product.code = 1
+            product.id = 1
         }else{
-            product.code = this.products[this.products.length -1].code + 1
+            product.id = this.products[this.products.length -1].id + 1
         }
 
         this.products.push(product)
+
         console.log("se almaecno un nuevo producto")
     }
     getProducts(){
-        return this.products
+        return console.log(this.products)
     }
-    getProductsByCode(code){
-        const product = this.products.find((product) => {
-            return product.code == code
-        })
+    getProductByCode(code){
+        const product = this.products.find((product) => product.code == code)
         if(!product){
-            return "not found"
-        }else{
-            return product
+            console.log(`El product con codigo "${code}" no se encontro`)
         }
+        return console.log(product)
     }
 }
 
 const productManager = new ProductManager(); //crear instancia para acceder a sus metodos
 
-console.log(productManager.addProducts("contactor", "220v", 1500, "contactor.jpg", 15))
-console.log(productManager.addProducts("contactor", "110v", 2500, "contactor.jpg", 20))
+const product1 = productManager.addProducts("interruptor", "20A", 1500, "interruptor.jpg", 20, 565645)
+const product2 = productManager.addProducts("interruptor", "20A", 1500, "interruptor.jpg", 20, 565642)
 
-// console.log(productManager.getProducts())
-console.log(productManager.getProductsByCode(2))
+productManager.getProducts()
