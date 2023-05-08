@@ -13,9 +13,8 @@ class ProductManager{
             console.log("Debe completar todos los campos por favor");
             return;
         }
-        const exist = this.products.find((prod)=> prod.code == code)
-        if(exist) {
-          console.log(`Ya existe un producto con el codigo "${code}"`);
+        if(this.getProductByCode(code)){
+            console.log(`Ya existe un producto con el codigo "${code}"`)
           return;
         }
 
@@ -32,20 +31,34 @@ class ProductManager{
         console.log("se almaecno un nuevo producto")
     }
     getProducts(){
-        return console.log(this.products)
+        return this.products
     }
     getProductByCode(code){
         const product = this.products.find((product) => product.code == code)
         if(!product){
-            console.log(`El product con codigo "${code}" no se encontro`)
+            console.log(`No se encontro el producto con code: ${code}`)
         }
-        return console.log(product)
+        return product
     }
 }
 
-const productManager = new ProductManager(); //crear instancia para acceder a sus metodos
+//Crear una instancia de la clase ProductManager.
+const productManager = new ProductManager(); 
 
-const product1 = productManager.addProducts("interruptor", "20A", 1500, "interruptor.jpg", 20, 565645)
-const product2 = productManager.addProducts("interruptor", "20A", 1500, "interruptor.jpg", 20, 565642)
+//Llamar a "getProducts". DEBE devolver un arreglo sin elementos ([]).
+console.log(productManager.getProducts()); 
 
-productManager.getProducts()
+//Llamar a "addProduct" con los campos especificados en la cosigna.
+console.log(productManager.addProducts("contactor", "220v", 1500, "contactor.jpg", 15, 45456))
+
+//Llamar a "getProducts". DEBE devolver un arreglo con el producto agregado. 
+console.log(productManager.getProducts())
+
+//Llamar a "addProduct" con los mismos campos que en (3). NO debe agregar el producto.
+console.log(productManager.addProducts("contactor", "220v", 1500, "contactor.jpg", 15, 45456))
+
+//Llamar a "getProductByCode". Probar con un code = "abc123" (debe devolver el producto con code = "abc123")
+console.log(productManager.getProductByCode(45456))
+
+//Dsp probar con un code cualquiera, que sepas que no va a encontrar y verificar que se muestre por consola el msj "No se encontro producto ..." 
+console.log(productManager.getProductByCode(45455))
