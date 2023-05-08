@@ -48,17 +48,17 @@ const productManager = new ProductManager();
 //Llamar a "getProducts". DEBE devolver un arreglo sin elementos ([]).
 console.log(productManager.getProducts()); 
 
-//Llamar a "addProduct" con los campos especificados en la cosigna.
+//Llamar a "addProduct" con los campos especificados en la cosigna, El objeto debe agregarse satisfactoriamente con un id generado .
 console.log(productManager.addProducts("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25))
 
-//Llamar a "getProducts". DEBE devolver un arreglo con el producto agregado. 
+//Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado 
 console.log(productManager.getProducts())
 
-//Llamar a "addProduct" con los mismos campos que en (3). NO debe agregar el producto.
+//Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
 console.log(productManager.addProducts("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25))
 
 //Llamar a "getProductByCode". Probar con un code = "abc123" (debe devolver el producto con code = "abc123")
 console.log(productManager.getProductByCode("abc123"))
 
-//Dsp probar con un code cualquiera, que sepas que no va a encontrar y verificar que se muestre por consola el msj "No se encontro producto ..." 
+//Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo" 
 console.log(productManager.getProductByCode(1111))
