@@ -2,7 +2,7 @@ class ProductManager{
     constructor(){
         this.products = [];
     }
-    addProducts(title, description, price, thumbnail, stock, code){
+    addProducts(title, description, price, thumbnail,code, stock){
 
         if( title == null ||
             description == null ||
@@ -18,7 +18,7 @@ class ProductManager{
           return;
         }
 
-        const product = {title, description, price, thumbnail, stock, code}
+        const product = {title, description, price, thumbnail, code, stock}
         
         if(this.products.length === 0){
             product.id = 1
@@ -49,16 +49,16 @@ const productManager = new ProductManager();
 console.log(productManager.getProducts()); 
 
 //Llamar a "addProduct" con los campos especificados en la cosigna.
-console.log(productManager.addProducts("contactor", "220v", 1500, "contactor.jpg", 15, 45456))
+console.log(productManager.addProducts("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25))
 
 //Llamar a "getProducts". DEBE devolver un arreglo con el producto agregado. 
 console.log(productManager.getProducts())
 
 //Llamar a "addProduct" con los mismos campos que en (3). NO debe agregar el producto.
-console.log(productManager.addProducts("contactor", "220v", 1500, "contactor.jpg", 15, 45456))
+console.log(productManager.addProducts("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25))
 
 //Llamar a "getProductByCode". Probar con un code = "abc123" (debe devolver el producto con code = "abc123")
-console.log(productManager.getProductByCode(45456))
+console.log(productManager.getProductByCode("abc123"))
 
 //Dsp probar con un code cualquiera, que sepas que no va a encontrar y verificar que se muestre por consola el msj "No se encontro producto ..." 
-console.log(productManager.getProductByCode(45455))
+console.log(productManager.getProductByCode(1111))
